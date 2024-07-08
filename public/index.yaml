@@ -56,6 +56,6 @@ entries:
     name: baserow
     type: application
     urls:
-    - https://baserow.gitlab.io/baserow-charts/baserow-0.1.0.tgz
+    - https://baserow.gitlab.io/baserow-chart/baserow-0.1.0.tgz
     version: 0.1.0
 generated: "2024-07-08T20:32:18.872009446+02:00"
