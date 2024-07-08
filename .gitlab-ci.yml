@@ -1,0 +1,11 @@
+image: alpine
+before_script: []
+pages:
+  script:
+    - echo "create artifacts"
+  artifacts:
+    paths:
+      - public
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+
