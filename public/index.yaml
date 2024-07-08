@@ -1,0 +1,61 @@
+apiVersion: v1
+entries:
+  baserow:
+  - apiVersion: v2
+    appVersion: 1.25.2
+    created: "2024-07-08T20:32:18.890089795+02:00"
+    dependencies:
+    - alias: baserow-backend-asgi
+      name: baserow
+      repository: file://charts/baserow
+      version: 0.1.0
+    - alias: baserow-backend-wsgi
+      name: baserow
+      repository: file://charts/baserow
+      version: 0.1.0
+    - alias: baserow-frontend
+      name: baserow
+      repository: file://charts/baserow
+      version: 0.1.0
+    - alias: baserow-celery-beat-worker
+      name: baserow
+      repository: file://charts/baserow
+      version: 0.1.0
+    - alias: baserow-celery-export-worker
+      name: baserow
+      repository: file://charts/baserow
+      version: 0.1.0
+    - alias: baserow-celery-worker
+      name: baserow
+      repository: file://charts/baserow
+      version: 0.1.0
+    - alias: baserow-celery-flower
+      condition: baserow-celery-flower.enabled
+      name: baserow
+      repository: file://charts/baserow
+      version: 0.1.0
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 19.5.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.x
+    - condition: minio.enabled
+      name: minio
+      repository: https://charts.bitnami.com/bitnami
+      version: 14.6.x
+    - alias: caddy
+      condition: caddy.enabled
+      name: caddy-ingress-controller
+      repository: https://caddyserver.github.io/ingress
+      version: 1.1.0
+    description: A Helm chart for Kubernetes
+    digest: 81719bab8466315ca594437368b8ae5e55e0c6b1b27fc5f903946cb6a0582d35
+    name: baserow
+    type: application
+    urls:
+    - https://baserow.gitlab.io/baserow-charts/baserow-0.1.0.tgz
+    version: 0.1.0
+generated: "2024-07-08T20:32:18.872009446+02:00"
