@@ -3,7 +3,65 @@ entries:
   baserow:
   - apiVersion: v2
     appVersion: 1.25.2
-    created: "2024-07-11T18:04:27.99202723+02:00"
+    created: "2024-07-12T17:51:32.396725488+02:00"
+    dependencies:
+    - alias: baserow-backend-asgi
+      name: baserow
+      repository: file://charts/baserow
+      version: 0.1.2
+    - alias: baserow-backend-wsgi
+      name: baserow
+      repository: file://charts/baserow
+      version: 0.1.2
+    - alias: baserow-frontend
+      name: baserow
+      repository: file://charts/baserow
+      version: 0.1.2
+    - alias: baserow-celery-beat-worker
+      name: baserow
+      repository: file://charts/baserow
+      version: 0.1.2
+    - alias: baserow-celery-export-worker
+      name: baserow
+      repository: file://charts/baserow
+      version: 0.1.2
+    - alias: baserow-celery-worker
+      name: baserow
+      repository: file://charts/baserow
+      version: 0.1.2
+    - alias: baserow-celery-flower
+      condition: baserow-celery-flower.enabled
+      name: baserow
+      repository: file://charts/baserow
+      version: 0.1.2
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 19.5.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.x
+    - condition: minio.enabled
+      name: minio
+      repository: https://charts.bitnami.com/bitnami
+      version: 14.6.18
+    - alias: caddy
+      condition: caddy.enabled
+      name: caddy-ingress-controller
+      repository: https://caddyserver.github.io/ingress
+      version: 1.1.0
+    description: The open platform to create scalable databases and applications—without
+      coding.
+    digest: 9f33dae49a1bea6f4cddfe1411880fab45f5553ff06c67d40f8e303aff403bf7
+    name: baserow
+    type: application
+    urls:
+    - https://baserow.gitlab.io/baserow-chart/baserow-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 1.25.2
+    created: "2024-07-12T17:51:32.361874089+02:00"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -51,8 +109,9 @@ entries:
       name: caddy-ingress-controller
       repository: https://caddyserver.github.io/ingress
       version: 1.1.0
-    description: A Helm chart for Kubernetes
-    digest: e27ed44738af49b6afe5c83e99f21d0616b794289c7204068f2db37f2d1cb645
+    description: The open platform to create scalable databases and applications—without
+      coding.
+    digest: c095cab9ed416fc1b3e73d743efc65b2f6060ee16a550459ffa34bf5e4abba27
     name: baserow
     type: application
     urls:
@@ -60,7 +119,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.25.2
-    created: "2024-07-11T18:04:27.953506852+02:00"
+    created: "2024-07-12T17:51:32.326078711+02:00"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -115,4 +174,4 @@ entries:
     urls:
     - https://baserow.gitlab.io/baserow-chart/baserow-0.1.0.tgz
     version: 0.1.0
-generated: "2024-07-11T18:04:27.930873008+02:00"
+generated: "2024-07-12T17:51:32.300330491+02:00"
