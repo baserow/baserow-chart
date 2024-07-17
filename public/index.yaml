@@ -3,7 +3,65 @@ entries:
   baserow:
   - apiVersion: v2
     appVersion: 1.26.1
-    created: "2024-07-16T18:57:36.005847074+02:00"
+    created: "2024-07-17T16:39:51.950539+02:00"
+    dependencies:
+    - alias: baserow-backend-asgi
+      name: baserow
+      repository: file://charts/baserow-common
+      version: 1.0.0
+    - alias: baserow-backend-wsgi
+      name: baserow
+      repository: file://charts/baserow-common
+      version: 1.0.0
+    - alias: baserow-frontend
+      name: baserow
+      repository: file://charts/baserow-common
+      version: 1.0.0
+    - alias: baserow-celery-beat-worker
+      name: baserow
+      repository: file://charts/baserow-common
+      version: 1.0.0
+    - alias: baserow-celery-export-worker
+      name: baserow
+      repository: file://charts/baserow-common
+      version: 1.0.0
+    - alias: baserow-celery-worker
+      name: baserow
+      repository: file://charts/baserow-common
+      version: 1.0.0
+    - alias: baserow-celery-flower
+      condition: baserow-celery-flower.enabled
+      name: baserow
+      repository: file://charts/baserow-common
+      version: 1.0.0
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 19.5.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.x
+    - condition: minio.enabled
+      name: minio
+      repository: https://charts.bitnami.com/bitnami
+      version: 14.6.18
+    - alias: caddy
+      condition: caddy.enabled
+      name: caddy-ingress-controller
+      repository: https://caddyserver.github.io/ingress
+      version: 1.1.0
+    description: The open platform to create scalable databases and applications—without
+      coding.
+    digest: 6bad7d1e5042782c82bb79b93785d5d7aabad8ddf1b3f4ffcf46aeeb07a25a20
+    name: baserow
+    type: application
+    urls:
+    - https://baserow.gitlab.io/baserow-chart/baserow-1.0.0.tgz
+    version: 1.0.0
+  - apiVersion: v2
+    appVersion: 1.26.1
+    created: "2024-07-17T16:39:51.942441+02:00"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -61,7 +119,7 @@ entries:
     version: 0.1.3
   - apiVersion: v2
     appVersion: 1.25.2
-    created: "2024-07-16T18:57:35.964307773+02:00"
+    created: "2024-07-17T16:39:51.933439+02:00"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -119,7 +177,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.25.2
-    created: "2024-07-16T18:57:35.906507996+02:00"
+    created: "2024-07-17T16:39:51.924332+02:00"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -177,7 +235,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.25.2
-    created: "2024-07-16T18:57:35.85404093+02:00"
+    created: "2024-07-17T16:39:51.914235+02:00"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -232,4 +290,4 @@ entries:
     urls:
     - https://baserow.gitlab.io/baserow-chart/baserow-0.1.0.tgz
     version: 0.1.0
-generated: "2024-07-16T18:57:35.810697735+02:00"
+generated: "2024-07-17T16:39:51.903477+02:00"
