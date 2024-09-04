@@ -1,5 +1,6 @@
 stages:
   - update_helm_repo
+  - publish
 
 variables:
   BASEROW_REPO_ID: 10858056
