@@ -19,11 +19,13 @@ update_helm_repo:
     - mv deploy/helm/baserow* public
     - rm -r deploy/helm
     - rm -r deploy
-    - helm repo index --url https://baserow.gitlab.io/baserow-chart public
+    - cd public
+    - helm repo index --url https://baserow.gitlab.io/baserow-chart .
+    - cd ..
     - git config user.email "helm-chart@baserow.io"
     - git config user.name "Baserow Helm Repo Bot"
     - git remote add repo_origin https://oauth2:$PROJECT_ACCESS_TOKEN@gitlab.com/baserow/baserow-chart
-    - git add public/*.tgz index.yaml
+    - git add public/*.tgz public/index.yaml
     - git commit -m "Updated Helm chart version to $HELM_CHART_VERSION"
     - git push repo_origin HEAD:main -o ci.skip
   rules:
