@@ -4,7 +4,6 @@ stages:
 
 variables:
   BASEROW_REPO_ID: 10858056
-  BASEROW_BUILD_BRANCH: master
   BASEROW_JOB_NAME: publish-helm-chart
   HELM_CHART_VERSION: 0.0.1
 
@@ -13,8 +12,8 @@ update_helm_repo:
   image: alpine:latest
   script:
     - apk update && apk add unzip curl git helm openssh
-    - echo "Pulling artifacts from $BASEROW_REPO_ID $BASEROW_BUILD_BRANCH $BASEROW_JOB_NAME"
-    - 'curl --location "https://gitlab.com/api/v4/projects/$BASEROW_REPO_ID/jobs/artifacts/$BASEROW_BUILD_BRANCH/download?job=$BASEROW_JOB_NAME" --output artifacts.zip'
+    - echo "Pulling artifacts from $BASEROW_REPO_ID $HELM_CHART_VERSION $BASEROW_JOB_NAME"
+    - 'curl --location "https://gitlab.com/api/v4/projects/$BASEROW_REPO_ID/jobs/artifacts/$HELM_CHART_VERSION/download?job=$BASEROW_JOB_NAME" --output artifacts.zip'
     - unzip artifacts.zip
     - mv deploy/helm/baserow* public
     - rm -r deploy/helm
