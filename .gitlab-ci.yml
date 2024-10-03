@@ -29,7 +29,7 @@ update_helm_repo:
     - git commit -m "Updated Helm chart version to $HELM_CHART_VERSION"
     - git push repo_origin HEAD:main -o ci.skip
   rules:
-    - if: $CI_PIPELINE_SOURCE == "pipeline" || $CI_PIPELINE_SOURCE == "web"
+    - if: $CI_PIPELINE_SOURCE == "pipeline" || $CI_PIPELINE_SOURCE == "trigger" || $CI_PIPELINE_SOURCE == "web"
 
 pages:
   stage: publish
