@@ -13,8 +13,82 @@ entries:
           url: https://gitlab.com/baserow/baserow/-/tree/develop/deploy/helm/baserow?ref_type=heads
       artifacthub.io/quality: production
     apiVersion: v2
+    appVersion: 1.35.3
+    created: "2025-10-08T15:55:05.931009435Z"
+    dependencies:
+    - alias: baserow-backend-asgi
+      name: baserow
+      repository: file://charts/baserow-common
+      version: 1.0.35
+    - alias: baserow-backend-wsgi
+      name: baserow
+      repository: file://charts/baserow-common
+      version: 1.0.35
+    - alias: baserow-frontend
+      name: baserow
+      repository: file://charts/baserow-common
+      version: 1.0.35
+    - alias: baserow-celery-beat-worker
+      name: baserow
+      repository: file://charts/baserow-common
+      version: 1.0.35
+    - alias: baserow-celery-export-worker
+      name: baserow
+      repository: file://charts/baserow-common
+      version: 1.0.35
+    - alias: baserow-celery-worker
+      name: baserow
+      repository: file://charts/baserow-common
+      version: 1.0.35
+    - alias: baserow-celery-flower
+      condition: baserow-celery-flower.enabled
+      name: baserow
+      repository: file://charts/baserow-common
+      version: 1.0.35
+    - condition: redis.enabled
+      name: redis
+      repository: https://charts.bitnami.com/bitnami
+      version: 19.5.x
+    - condition: postgresql.enabled
+      name: postgresql
+      repository: https://charts.bitnami.com/bitnami
+      version: 15.5.x
+    - condition: minio.enabled
+      name: minio
+      repository: https://charts.bitnami.com/bitnami
+      version: 14.6.18
+    - alias: caddy
+      condition: caddy.enabled
+      name: caddy-ingress-controller
+      repository: https://caddyserver.github.io/ingress
+      version: 1.1.0
+    description: The open platform to create scalable databases and applications—without
+      coding.
+    digest: eac5633c5841b71e5a016f42493ff810511581106b4f9f762c3279add3817fe2
+    home: https://gitlab.com/baserow/baserow/-/tree/develop/deploy/helm/baserow?ref_type=heads
+    icon: https://baserow.io/img/favicon_192.png
+    name: baserow
+    sources:
+    - https://gitlab.com/baserow/baserow
+    - https://baserow.io
+    type: application
+    urls:
+    - https://baserow.gitlab.io/baserow-chart/baserow-1.0.35.tgz
+    version: 1.0.35
+  - annotations:
+      artifacthub.io/category: database
+      artifacthub.io/keywords: baserow, database, application, scalable, open-source
+      artifacthub.io/links: |
+        - name: website
+          url: https://baserow.io
+        - name: source
+          url: https://gitlab.com/baserow/baserow
+        - name: helm
+          url: https://gitlab.com/baserow/baserow/-/tree/develop/deploy/helm/baserow?ref_type=heads
+      artifacthub.io/quality: production
+    apiVersion: v2
     appVersion: 1.35.2
-    created: "2025-10-01T10:50:50.425900446Z"
+    created: "2025-10-08T15:55:05.914064564Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -88,7 +162,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.35.1
-    created: "2025-10-01T10:50:50.408929583Z"
+    created: "2025-10-08T15:55:05.894846266Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -162,7 +236,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.34.5
-    created: "2025-10-01T10:50:50.390960744Z"
+    created: "2025-10-08T15:55:05.876275787Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -236,7 +310,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.34.4
-    created: "2025-10-01T10:50:50.372955235Z"
+    created: "2025-10-08T15:55:05.860102264Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -310,7 +384,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.34.3
-    created: "2025-10-01T10:50:50.340560182Z"
+    created: "2025-10-08T15:55:05.825220863Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -384,7 +458,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.34.2
-    created: "2025-10-01T10:50:50.321955716Z"
+    created: "2025-10-08T15:55:05.806529334Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -458,7 +532,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.34.1
-    created: "2025-10-01T10:50:50.305196492Z"
+    created: "2025-10-08T15:55:05.790076782Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -532,7 +606,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.34.0
-    created: "2025-10-01T10:50:50.285904879Z"
+    created: "2025-10-08T15:55:05.771340033Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -606,7 +680,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.33.4
-    created: "2025-10-01T10:50:50.267566372Z"
+    created: "2025-10-08T15:55:05.753327193Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -680,7 +754,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.33.3
-    created: "2025-10-01T10:50:50.247864421Z"
+    created: "2025-10-08T15:55:05.734853074Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -754,7 +828,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.33.2
-    created: "2025-10-01T10:50:50.231643505Z"
+    created: "2025-10-08T15:55:05.716385526Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -828,7 +902,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.33.1
-    created: "2025-10-01T10:50:50.214419233Z"
+    created: "2025-10-08T15:55:05.696005229Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -902,7 +976,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.33.0
-    created: "2025-10-01T10:50:50.196508004Z"
+    created: "2025-10-08T15:55:05.679116358Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -976,7 +1050,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.32.5
-    created: "2025-10-01T10:50:50.180337487Z"
+    created: "2025-10-08T15:55:05.66019176Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -1050,7 +1124,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.32.4
-    created: "2025-10-01T10:50:50.143771802Z"
+    created: "2025-10-08T15:55:05.625039059Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -1124,7 +1198,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.32.3
-    created: "2025-10-01T10:50:50.127373536Z"
+    created: "2025-10-08T15:55:05.607499148Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -1198,7 +1272,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.32.2
-    created: "2025-10-01T10:50:50.110518983Z"
+    created: "2025-10-08T15:55:05.590616426Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -1272,7 +1346,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.32.1
-    created: "2025-10-01T10:50:50.091022911Z"
+    created: "2025-10-08T15:55:05.5709088Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -1346,7 +1420,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.32.0
-    created: "2025-10-01T10:50:50.071394099Z"
+    created: "2025-10-08T15:55:05.551581622Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -1420,7 +1494,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.31.1
-    created: "2025-10-01T10:50:50.054578135Z"
+    created: "2025-10-08T15:55:05.534020932Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -1494,7 +1568,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.31.0
-    created: "2025-10-01T10:50:50.036161209Z"
+    created: "2025-10-08T15:55:05.515527453Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -1568,7 +1642,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.30.1
-    created: "2025-10-01T10:50:50.018786897Z"
+    created: "2025-10-08T15:55:05.496199625Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -1642,7 +1716,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.30.0
-    created: "2025-10-01T10:50:50.001292347Z"
+    created: "2025-10-08T15:55:05.478332325Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -1716,7 +1790,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.29.3
-    created: "2025-10-01T10:50:50.510506613Z"
+    created: "2025-10-08T15:55:06.020231385Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -1790,7 +1864,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.29.2
-    created: "2025-10-01T10:50:50.494219987Z"
+    created: "2025-10-08T15:55:06.003441613Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -1864,7 +1938,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.29.1
-    created: "2025-10-01T10:50:50.476567907Z"
+    created: "2025-10-08T15:55:05.984263956Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -1938,7 +2012,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.29.0
-    created: "2025-10-01T10:50:50.46029406Z"
+    created: "2025-10-08T15:55:05.967538864Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -2012,7 +2086,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.28.0
-    created: "2025-10-01T10:50:50.443747865Z"
+    created: "2025-10-08T15:55:05.948089917Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -2086,7 +2160,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.27.2
-    created: "2025-10-01T10:50:50.356805148Z"
+    created: "2025-10-08T15:55:05.842441644Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -2160,7 +2234,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.27.1
-    created: "2025-10-01T10:50:50.161779631Z"
+    created: "2025-10-08T15:55:05.643735597Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -2234,7 +2308,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.27.0
-    created: "2025-10-01T10:50:49.981806295Z"
+    created: "2025-10-08T15:55:05.462042792Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -2308,7 +2382,7 @@ entries:
       artifacthub.io/quality: production
     apiVersion: v2
     appVersion: 1.26.1
-    created: "2025-10-01T10:50:49.964554803Z"
+    created: "2025-10-08T15:55:05.444484402Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -2371,7 +2445,7 @@ entries:
     version: 1.0.0
   - apiVersion: v2
     appVersion: 1.26.1
-    created: "2025-10-01T10:50:49.944854272Z"
+    created: "2025-10-08T15:55:05.42792399Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -2429,7 +2503,7 @@ entries:
     version: 0.1.3
   - apiVersion: v2
     appVersion: 1.25.2
-    created: "2025-10-01T10:50:49.926742004Z"
+    created: "2025-10-08T15:55:05.412135376Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -2487,7 +2561,7 @@ entries:
     version: 0.1.2
   - apiVersion: v2
     appVersion: 1.25.2
-    created: "2025-10-01T10:50:49.90780591Z"
+    created: "2025-10-08T15:55:05.393497897Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -2545,7 +2619,7 @@ entries:
     version: 0.1.1
   - apiVersion: v2
     appVersion: 1.25.2
-    created: "2025-10-01T10:50:49.891127165Z"
+    created: "2025-10-08T15:55:05.375858737Z"
     dependencies:
     - alias: baserow-backend-asgi
       name: baserow
@@ -2600,4 +2674,4 @@ entries:
     urls:
     - https://baserow.gitlab.io/baserow-chart/baserow-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-01T10:50:49.87237001Z"
+generated: "2025-10-08T15:55:05.359168304Z"
