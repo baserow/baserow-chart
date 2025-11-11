@@ -1,0 +1,125 @@
+name: Update and Publish Helm Repository
+
+on:
+  repository_dispatch:
+    types: [helm-chart-published]
+  workflow_dispatch:
+    inputs:
+      chart_version:
+        description: "Helm Chart Version"
+        required: true
+        type: string
+      app_version:
+        description: "Application Version (tag)"
+        required: true
+        type: string
+      source_run_id:
+        description: "Source workflow run ID"
+        required: true
+        type: string
+
+jobs:
+  update-helm-repo:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Git
+        run: |
+          git config user.email "helm-chart@baserow.io"
+          git config user.name "Baserow Helm Repo Bot"
+
+      - name: Set up Helm
+        uses: azure/setup-helm@v4
+        with:
+          version: "3.15.2"
+
+      - name: Extract event payload
+        id: payload
+        run: |
+          if [ "${{ github.event_name }}" = "repository_dispatch" ]; then
+            echo "chart-version=${{ github.event.client_payload.chart_version }}" >> $GITHUB_OUTPUT
+            echo "app-version=${{ github.event.client_payload.app_version }}" >> $GITHUB_OUTPUT
+            echo "source-repo=${{ github.event.client_payload.source_repo }}" >> $GITHUB_OUTPUT
+            echo "source-run-id=${{ github.event.client_payload.source_run_id }}" >> $GITHUB_OUTPUT
+            echo "chart-file=${{ github.event.client_payload.chart_file }}" >> $GITHUB_OUTPUT
+          else
+            echo "chart-version=${{ inputs.chart_version }}" >> $GITHUB_OUTPUT
+            echo "app-version=${{ inputs.app_version }}" >> $GITHUB_OUTPUT
+            echo "source-run-id=${{ inputs.source_run_id }}" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Generate GitHub App Token
+        id: generate-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.CHART_REPO_APP_ID }}
+          private-key: ${{ secrets.CHART_REPO_APP_PRIVATE_KEY }}
+          owner: ${{ github.repository_owner }}
+          repositories: ${{ steps.payload.outputs.source-repo }}
+
+      - name: Download Helm Chart Artifact
+        env:
+          GH_TOKEN: ${{ steps.generate-token.outputs.token }}
+        run: |
+          # Create public directory if it doesn't exist
+          mkdir -p public
+
+          # Download artifact from source repository
+          echo "Downloading artifact from run ${{ steps.payload.outputs.source-run-id }}"
+          gh run download ${{ steps.payload.outputs.source-run-id }} \
+            --repo ${{ github.repository_owner }}/${{ steps.payload.outputs.source-repo }} \
+            --name helm-chart \
+            --dir ./
+
+          # Move the chart to public directory
+          mv baserow-*.tgz public/
+
+          echo "Chart downloaded and moved to public/"
+          ls -la public/
+
+      - name: Update Helm Repository Index
+        run: |
+          cd public
+          helm repo index --url https://${{ github.repository_owner }}.github.io/${{ github.event.repository.name }} .
+          cd ..
+
+      - name: Commit and Push Changes
+        run: |
+          git add public/*.tgz public/index.yaml
+          if git diff --cached --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Updated Helm chart version to ${{ steps.payload.outputs.chart-version }} (app version: ${{ steps.payload.outputs.app-version }})"
+            git push origin main
+          fi
+
+  publish-pages:
+    needs: update-helm-repo
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./public
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
